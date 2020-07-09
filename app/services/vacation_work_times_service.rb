@@ -22,8 +22,8 @@ class VacationWorkTimesService
   end
 
   def work_times
-    @work_times ||= @user.work_times.where('((starts_at::timestamp::date >= :start_date AND starts_at::timestamp::date <= :end_date) OR
-                                            (ends_at::timestamp::date >= :start_date AND ends_at::timestamp::date <= :end_date)) AND work_times.discarded_at IS NULL',
+    @work_times ||= @user.work_times.where("((((starts_at AT TIME ZONE 'gmt') AT TIME ZONE 'cest')::date >= :start_date AND ((starts_at AT TIME ZONE 'gmt') AT TIME ZONE 'cest')::date <= :end_date) OR
+                                            (((ends_at AT TIME ZONE 'gmt') AT TIME ZONE 'cest')::date >= :start_date AND ((ends_at AT TIME ZONE 'gmt') AT TIME ZONE 'cest')::date <= :end_date)) AND work_times.discarded_at IS NULL",
                                            start_date: @vacation.start_date, end_date: @vacation.end_date)
   end
 

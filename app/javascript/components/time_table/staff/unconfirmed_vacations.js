@@ -10,6 +10,8 @@ function UnconfirmedVacations(props) {
     setFilters,
     removeFromInteractedVacations,
     addToInteractedVacations,
+    usersVacationDays,
+    setUserVacationDays,
   } = props;
   const { waitingOrder } = filters;
 
@@ -46,6 +48,8 @@ function UnconfirmedVacations(props) {
             propsVacation={vacation}
             removeFromInteractedVacations={removeFromInteractedVacations}
             addToInteractedVacations={addToInteractedVacations}
+            availableVacationDays={usersVacationDays[vacation.user_id]}
+            setUserVacationDays={setUserVacationDays}
           />
         ))}
       </div>
